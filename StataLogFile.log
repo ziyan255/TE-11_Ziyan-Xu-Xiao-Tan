@@ -1,0 +1,501 @@
+--------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\StataLogFile.log
+  log type:  text
+ opened on:  26 Apr 2021, 17:03:49
+
+. twoway (scatter Over85Rate CaseFata) (lfit Over85Rate CaseFata)
+
+. graph export "C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\over85rate-casefatality.png", as(png) name
+> ("Graph")
+(file C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\over85rate-casefatality.png written in PNG format)
+label variable Over85Rate "Age Over 85 Rate"
+
+. twoway (scatter BlackRate CaseFata) (lfit BlackRate CaseFata)
+
+. graph export "C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\blackrate-casefatality.png", as(png) name(
+> "Graph")
+(file C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\blackrate-casefatality.png written in PNG format)
+label variable BlackRate "Black Population Rate"
+
+. save "C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\COVID0426最相关版.dta", replace
+file C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\COVID0426最相关版.dta saved
+
+. twoway (scatter PubTRate CaseFata) (lfit PubTRate CaseFata)
+
+. graph export "C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\PubTRate-casefata.png", as(png) name("Grap
+> h")
+(file C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\PubTRate-casefata.png written in PNG format)
+twoway (scatter MHI CaseFata, mlabel(State))
+
+.  twoway (scatter PubTRate CaseFata, mlabel(state)) (lfit PubTRate CaseFata)
+variable state not found
+r(111);
+
+. 
+. 
+. twoway (scatter PubTRate CaseFata, mlabel(State)) (lfit PubTRate CaseFata)
+
+. graph export "C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\PubTRate-casefata.png", as(png) name("Grap
+> h") replace
+(file C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\PubTRate-casefata.png written in PNG format)
+twoway (scatter Over85Rate CaseFata, mlabel(State)) (lfit Over85Rate CaseFata)
+
+. graph export "C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\over85rate-casefatality.png", as(png) name
+> ("Graph") replace
+(file C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\over85rate-casefatality.png written in PNG format)
+
+. twoway (scatter BlackRate CaseFata, mlabel(State)) (lfit BlackRate CaseFata)
+
+. graph export "C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\blackrate-casefatality.png", as(png) name(
+> "Graph") replace
+(file C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\blackrate-casefatality.png written in PNG format)
+ twoway (scatter Over85Rate CaseFata, mlabel(State)) (lfit Over85Rate CaseFata)
+
+. graph export "C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\over85rate-casefatality.png", as(png) name
+> ("Graph") replace
+(file C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\over85rate-casefatality.png written in PNG format)
+twoway (scatter MHI CaseFata, mlabel(State)) (lfit MHI CaseFata)
+
+. graph export "C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\MHI-casefata.png", as(png) name("Graph")
+(file C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\MHI-casefata.png written in PNG format)
+search avplot
+
+. reg
+
+      Source |       SS           df       MS      Number of obs   =        52
+-------------+----------------------------------   F(5, 46)        =      8.15
+       Model |  .000493005         5  .000098601   Prob > F        =    0.0000
+    Residual |  .000556353        46  .000012095   R-squared       =    0.4698
+-------------+----------------------------------   Adj R-squared   =    0.4122
+       Total |  .001049359        51  .000020576   Root MSE        =    .00348
+
+------------------------------------------------------------------------------
+    CaseFata |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+   WhiteRate |  -.0014017   .0048421    -0.29   0.774    -.0111483     .008345
+         MHI |   7.49e-09   5.05e-08     0.15   0.883    -9.41e-08    1.09e-07
+  Over85Rate |   .5257389   .1324054     3.97   0.000     .2592206    .7922573
+   BlackRate |   .0233643   .0065336     3.58   0.001     .0102129    .0365156
+    PubTRate |   .0071095   .0107487     0.66   0.512    -.0145265    .0287454
+       _cons |   .0040595    .006734     0.60   0.550    -.0094953    .0176142
+------------------------------------------------------------------------------
+
+. reg CaseFata Over85Rate BlackRate PubTRate i.state
+variable state not found
+r(111);
+
+. reg CaseFata Over85Rate BlackRate PubTRate i.State
+State:  string variables may not be used as factor variables
+r(109);
+
+. reg CaseFata Over85Rate BlackRate PubTRate
+
+      Source |       SS           df       MS      Number of obs   =        52
+-------------+----------------------------------   F(3, 48)        =     14.09
+       Model |  .000491449         3  .000163816   Prob > F        =    0.0000
+    Residual |   .00055791        48  .000011623   R-squared       =    0.4683
+-------------+----------------------------------   Adj R-squared   =    0.4351
+       Total |  .001049359        51  .000020576   Root MSE        =    .00341
+
+------------------------------------------------------------------------------
+    CaseFata |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+  Over85Rate |   .5195974   .1254579     4.14   0.000     .2673474    .7718473
+   BlackRate |   .0239724   .0050591     4.74   0.000     .0138005    .0341444
+    PubTRate |   .0088988   .0081888     1.09   0.283    -.0075659    .0253635
+       _cons |   .0034744   .0026768     1.30   0.200    -.0019076    .0088564
+------------------------------------------------------------------------------
+
+. avplot Over85Rate
+
+. avplots
+
+. graph export "C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\avplots.png", as(png) name("Graph")
+(file C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\avplots.png written in PNG format)
+
+. mvtest means BlackRate CaseFata Over85Rate PubTRate, by(State)
+matrix not positive definite
+insufficient residual degrees of freedom for this multivariate model
+r(506);
+
+. tabstat CaseFata BlackRate Over85Rate PubTRate MHI
+
+   stats |  CaseFata  BlackR~e  Over85~e  PubTRate       MHI
+---------+--------------------------------------------------
+    mean |  .0167927  .1143078  .0197034  .0382378  64645.21
+------------------------------------------------------------
+
+. tabstat CaseFata BlackRate Over85Rate PubTRate MHI, statistics( mean count max min cv skewness )
+
+   stats |  CaseFata  BlackR~e  Over85~e  PubTRate       MHI
+---------+--------------------------------------------------
+    mean |  .0167927  .1143078  .0197034  .0382378  64645.21
+       N |        52        52        52        52        52
+     max |   .027322  .4544165  .0271873  .3522383     92266
+     min |  .0052172  .0071111  .0091109  .0028884     20474
+      cv |  .2701192   .920076   .199582  1.655779  .1964988
+skewness | -.0373218  1.327769 -.2219682  3.628869 -.3563427
+------------------------------------------------------------
+
+. tabstat CaseFata BlackRate Over85Rate PubTRate MHI, statistics( mean count max min var skewness )
+
+   stats |  CaseFata  BlackR~e  Over85~e  PubTRate       MHI
+---------+--------------------------------------------------
+    mean |  .0167927  .1143078  .0197034  .0382378  64645.21
+       N |        52        52        52        52        52
+     max |   .027322  .4544165  .0271873  .3522383     92266
+     min |  .0052172  .0071111  .0091109  .0028884     20474
+variance |  .0000206  .0110611  .0000155  .0040086  1.61e+08
+skewness | -.0373218  1.327769 -.2219682  3.628869 -.3563427
+------------------------------------------------------------
+
+. graph box CaseFata
+
+. qnorm BlackRate
+
+. qnorm CaseFata BlackRate Over85Rate PubTRate MHI
+too many variables specified
+r(103);
+
+. qnorm BlackRate
+
+. graph export "C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\Normal-blackrate.png", as(png) name("Graph
+> ")
+(file C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\Normal-blackrate.png written in PNG format)
+
+. qnorm  CaseFata
+
+. graph export "C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\Normal-casefata.png", as(png) name("Graph"
+> )
+(file C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\Normal-casefata.png written in PNG format)
+
+.  qnorm Over85Rate
+
+. graph export "C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\Normal-over85rate.png", as(png) name("Grap
+> h")
+(file C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\Normal-over85rate.png written in PNG format)
+
+. qnorm PubTRate
+
+. unmatched quote
+unmatched quote
+graph export "C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\Normal-publictrans.png", as(png) name("Graph
+> ")
+(file C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\Normal-publictrans.png written in PNG format)
+qnorm MHI
+
+. graph export "C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\normal-MHI.png", as(png) name("Graph")
+(file C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\normal-MHI.png written in PNG format)
+*(1 variable, 52 observations pasted into data editor)
+
+. tostring male, replace
+male was long now str8
+
+. destring male, replace
+male: all characters numeric; replaced as long
+
+. generate MaleRate = male/TotalPop
+
+. drop male 
+
+. save "C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\COVID0426最相关版.dta", replace
+file C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\COVID0426最相关版.dta saved
+
+. save "C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\COVID0426最相关版.dta", replace
+file C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\COVID0426最相关版.dta saved
+
+. label variable MaleRate "Male Population Rate"
+
+. save "C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\COVID0426最相关版.dta", replace
+file C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\COVID0426最相关版.dta saved
+
+. qnorm MaleRate
+
+. graph export "C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\normal-malerate.png", as(png) name("Graph"
+> )
+(file C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\normal-malerate.png written in PNG format)
+
+. regress CaseFata BlackRate Over85Rate MaleRate PubTRate MHI
+
+      Source |       SS           df       MS      Number of obs   =        52
+-------------+----------------------------------   F(5, 46)        =      8.60
+       Model |  .000507005         5  .000101401   Prob > F        =    0.0000
+    Residual |  .000542354        46   .00001179   R-squared       =    0.4832
+-------------+----------------------------------   Adj R-squared   =    0.4270
+       Total |  .001049359        51  .000020576   Root MSE        =    .00343
+
+------------------------------------------------------------------------------
+    CaseFata |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+   BlackRate |   .0169438   .0085454     1.98   0.053    -.0002572    .0341449
+  Over85Rate |   .4163146   .1632674     2.55   0.014     .0876744    .7449547
+    MaleRate |  -.1205669   .1068447    -1.13   0.265    -.3356342    .0945003
+    PubTRate |   .0046056   .0108378     0.42   0.673    -.0172099     .026421
+         MHI |   2.71e-08   5.10e-08     0.53   0.598    -7.55e-08    1.30e-07
+       _cons |   .0642175   .0547451     1.17   0.247    -.0459787    .1744137
+------------------------------------------------------------------------------
+
+. regress CaseFata BlackRate Over85Rate
+
+      Source |       SS           df       MS      Number of obs   =        52
+-------------+----------------------------------   F(2, 49)        =     20.47
+       Model |  .000477723         2  .000238862   Prob > F        =    0.0000
+    Residual |  .000571636        49  .000011666   R-squared       =    0.4553
+-------------+----------------------------------   Adj R-squared   =    0.4330
+       Total |  .001049359        51  .000020576   Root MSE        =    .00342
+
+------------------------------------------------------------------------------
+    CaseFata |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+   BlackRate |   .0261145   .0046679     5.59   0.000      .016734    .0354949
+  Over85Rate |   .5354117   .1248408     4.29   0.000     .2845346    .7862887
+       _cons |   .0032582   .0026743     1.22   0.229     -.002116    .0086324
+------------------------------------------------------------------------------
+
+. tabstat CaseFata BlackRate Over85Rate PubTRate MHI MaleRate, statistics( mean count max min var skewness )
+
+   stats |  CaseFata  BlackR~e  Over85~e  PubTRate       MHI  MaleRate
+---------+------------------------------------------------------------
+    mean |  .0167927  .1143078  .0197034  .0382378  64645.21   .493415
+       N |        52        52        52        52        52        52
+     max |   .027322  .4544165  .0271873  .3522383     92266  .5200405
+     min |  .0052172  .0071111  .0091109  .0028884     20474  .4737591
+variance |  .0000206  .0110611  .0000155  .0040086  1.61e+08   .000077
+skewness | -.0373218  1.327769 -.2219682  3.628869 -.3563427  .4342898
+----------------------------------------------------------------------
+
+. reg CaseFata Over85Rate BlackRate PubTRate MHI MaleRate
+
+      Source |       SS           df       MS      Number of obs   =        52
+-------------+----------------------------------   F(5, 46)        =      8.60
+       Model |  .000507005         5  .000101401   Prob > F        =    0.0000
+    Residual |  .000542354        46   .00001179   R-squared       =    0.4832
+-------------+----------------------------------   Adj R-squared   =    0.4270
+       Total |  .001049359        51  .000020576   Root MSE        =    .00343
+
+------------------------------------------------------------------------------
+    CaseFata |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+  Over85Rate |   .4163146   .1632674     2.55   0.014     .0876744    .7449547
+   BlackRate |   .0169438   .0085454     1.98   0.053    -.0002572    .0341449
+    PubTRate |   .0046056   .0108378     0.42   0.673    -.0172099     .026421
+         MHI |   2.71e-08   5.10e-08     0.53   0.598    -7.55e-08    1.30e-07
+    MaleRate |  -.1205669   .1068447    -1.13   0.265    -.3356342    .0945003
+       _cons |   .0642175   .0547451     1.17   0.247    -.0459787    .1744137
+------------------------------------------------------------------------------
+
+. avplots
+
+. graph export "C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\avplots.png", as(png) name("Graph") replac
+> e
+(file C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\avplots.png written in PNG format)
+
+. twoway (scatter MaleRate CaseFata, mlabel(State)) (lfit MaleRate CaseFata)
+
+. graph export "C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\malerate-casefata.png", as(png) name("Grap
+> h")
+(file C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\malerate-casefata.png written in PNG format)
+
+. log off
+      name:  <unnamed>
+       log:  C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\StataLogFile.log
+  log type:  text
+ paused on:  26 Apr 2021, 18:07:08
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\StataLogFile.log
+  log type:  text
+ opened on:   2 May 2021, 12:25:14
+
+. pwcorr CaseFata BlackRate Over85Rate PubTRate MHI MaleRate
+
+             | CaseFata BlackR~e Over85~e PubTRate      MHI MaleRate
+-------------+------------------------------------------------------
+    CaseFata |   1.0000 
+   BlackRate |   0.5008   1.0000 
+  Over85Rate |   0.3276  -0.2256   1.0000 
+    PubTRate |   0.3417   0.3749   0.0202   1.0000 
+         MHI |   0.0151  -0.0245  -0.1252   0.5436   1.0000 
+    MaleRate |  -0.6222  -0.7165  -0.2722  -0.3501   0.1748   1.0000 
+
+. pwcorr CaseFata BlackRate Over85Rate PubTRate MHI MaleRate, star(0.05)
+
+             | CaseFata BlackR~e Over85~e PubTRate      MHI MaleRate
+-------------+------------------------------------------------------
+    CaseFata |   1.0000 
+   BlackRate |   0.5008*  1.0000 
+  Over85Rate |   0.3276* -0.2256   1.0000 
+    PubTRate |   0.3417*  0.3749*  0.0202   1.0000 
+         MHI |   0.0151  -0.0245  -0.1252   0.5436*  1.0000 
+    MaleRate |  -0.6222* -0.7165* -0.2722  -0.3501*  0.1748   1.0000 
+
+. regress CaseFata BlackRate Over85Rate PubTRate MHI MaleRate
+
+      Source |       SS           df       MS      Number of obs   =        52
+-------------+----------------------------------   F(5, 46)        =      8.60
+       Model |  .000507005         5  .000101401   Prob > F        =    0.0000
+    Residual |  .000542354        46   .00001179   R-squared       =    0.4832
+-------------+----------------------------------   Adj R-squared   =    0.4270
+       Total |  .001049359        51  .000020576   Root MSE        =    .00343
+
+------------------------------------------------------------------------------
+    CaseFata |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+   BlackRate |   .0169438   .0085454     1.98   0.053    -.0002572    .0341449
+  Over85Rate |   .4163146   .1632674     2.55   0.014     .0876744    .7449547
+    PubTRate |   .0046056   .0108378     0.42   0.673    -.0172099     .026421
+         MHI |   2.71e-08   5.10e-08     0.53   0.598    -7.55e-08    1.30e-07
+    MaleRate |  -.1205669   .1068447    -1.13   0.265    -.3356342    .0945003
+       _cons |   .0642175   .0547451     1.17   0.247    -.0459787    .1744137
+------------------------------------------------------------------------------
+
+. estat ovtest
+
+Ramsey RESET test using powers of the fitted values of CaseFata
+       Ho:  model has no omitted variables
+                  F(3, 43) =      0.89
+                  Prob > F =      0.4525
+
+. estat imtest, white
+
+White's test for Ho: homoskedasticity
+         against Ha: unrestricted heteroskedasticity
+
+         chi2(20)     =     25.92
+         Prob > chi2  =    0.1686
+
+Cameron & Trivedi's decomposition of IM-test
+
+---------------------------------------------------
+              Source |       chi2     df      p
+---------------------+-----------------------------
+  Heteroskedasticity |      25.92     20    0.1686
+            Skewness |      17.06      5    0.0044
+            Kurtosis |       0.99      1    0.3208
+---------------------+-----------------------------
+               Total |      43.96     26    0.0153
+---------------------------------------------------
+
+. estat vif
+
+    Variable |       VIF       1/VIF  
+-------------+----------------------
+    MaleRate |      3.80    0.263089
+   BlackRate |      3.49    0.286211
+    PubTRate |      2.04    0.490997
+         MHI |      1.81    0.551801
+  Over85Rate |      1.78    0.560827
+-------------+----------------------
+    Mean VIF |      2.59
+
+. regress CaseFata Over85Rate BlackRate MaleRate, star(0.05)
+option star() incorrectly specified
+r(198);
+
+.  regress CaseFata Over85Rate BlackRate MaleRate
+
+      Source |       SS           df       MS      Number of obs   =        52
+-------------+----------------------------------   F(3, 48)        =     14.11
+       Model |  .000491718         3  .000163906   Prob > F        =    0.0000
+    Residual |  .000557641        48  .000011618   R-squared       =    0.4686
+-------------+----------------------------------   Adj R-squared   =    0.4354
+       Total |  .001049359        51  .000020576   Root MSE        =    .00341
+
+------------------------------------------------------------------------------
+    CaseFata |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+  Over85Rate |   .4220148   .1618492     2.61   0.012     .0965952    .7474344
+   BlackRate |   .0185113   .0083479     2.22   0.031     .0017268    .0352959
+    MaleRate |  -.1111975   .1013148    -1.10   0.278    -.3149045    .0925094
+       _cons |   .0612281   .0528852     1.16   0.253    -.0451046    .1675609
+------------------------------------------------------------------------------
+
+. rvfplot
+
+. graph export "C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\三个变量rvfplot.png", as(png) name("Graph"
+> )
+(file C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\三个变量rvfplot.png written in PNG format)
+
+. log close
+      name:  <unnamed>
+       log:  C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\StataLogFile.log
+  log type:  text
+ closed on:   2 May 2021, 12:48:41
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\StataLogFile.log
+  log type:  text
+ opened on:   2 May 2021, 13:24:27
+
+. use "C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\COVIDdataset0426.dta"
+
+. regress CaseFata Over85Rate BlackRate MaleRate
+
+      Source |       SS           df       MS      Number of obs   =        52
+-------------+----------------------------------   F(3, 48)        =     14.11
+       Model |  .000491718         3  .000163906   Prob > F        =    0.0000
+    Residual |  .000557641        48  .000011618   R-squared       =    0.4686
+-------------+----------------------------------   Adj R-squared   =    0.4354
+       Total |  .001049359        51  .000020576   Root MSE        =    .00341
+
+------------------------------------------------------------------------------
+    CaseFata |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+  Over85Rate |   .4220148   .1618492     2.61   0.012     .0965952    .7474344
+   BlackRate |   .0185113   .0083479     2.22   0.031     .0017268    .0352959
+    MaleRate |  -.1111975   .1013148    -1.10   0.278    -.3149045    .0925094
+       _cons |   .0612281   .0528852     1.16   0.253    -.0451046    .1675609
+------------------------------------------------------------------------------
+
+. rvfplot
+
+. graph export "C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\三个变量rvfplot.png", as(png) name("Graph"
+> ) replace
+(file C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\图片\三个变量rvfplot.png written in PNG format)
+
+. estat ovtest
+
+Ramsey RESET test using powers of the fitted values of CaseFata
+       Ho:  model has no omitted variables
+                  F(3, 45) =      0.60
+                  Prob > F =      0.6160
+
+. estat imtest, white
+
+White's test for Ho: homoskedasticity
+         against Ha: unrestricted heteroskedasticity
+
+         chi2(9)      =      7.55
+         Prob > chi2  =    0.5800
+
+Cameron & Trivedi's decomposition of IM-test
+
+---------------------------------------------------
+              Source |       chi2     df      p
+---------------------+-----------------------------
+  Heteroskedasticity |       7.55      9    0.5800
+            Skewness |       8.65      3    0.0343
+            Kurtosis |       0.00      1    0.9798
+---------------------+-----------------------------
+               Total |      16.20     13    0.2383
+---------------------------------------------------
+
+. estat vif
+
+    Variable |       VIF       1/VIF  
+-------------+----------------------
+    MaleRate |      3.47    0.288305
+   BlackRate |      3.38    0.295522
+  Over85Rate |      1.78    0.562335
+-------------+----------------------
+    Mean VIF |      2.88
+
+. log close
+      name:  <unnamed>
+       log:  C:\Users\我是小徐、\Desktop\第二学期\5250\TE11\StataLogFile.log
+  log type:  text
+ closed on:   2 May 2021, 13:29:26
+--------------------------------------------------------------------------------------------------------------
